@@ -10,7 +10,7 @@ export default async function getImage(
   const dynamodb = new AWS.DynamoDB.DocumentClient();
   const { limit, lastKey } = req.query;
 
-  const limitNumber = parseInt(limit as string) || 20;
+  const limitNumber = parseInt(limit as string) || 15;
   const limitedLimitNumber = limitNumber > 30 ? 30 : limitNumber;
 
   const params = {
