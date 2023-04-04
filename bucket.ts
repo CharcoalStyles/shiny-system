@@ -109,7 +109,7 @@ export const handler = async (event: Event) => {
           pk: "image-data",
           sk: `${id}`,
           prompt,
-          negative,
+          negative: negative.replace("Negative prompt:", "").trim(),
           tags,
           type,
           model: model === "xyz" ? "unknown" : model,
