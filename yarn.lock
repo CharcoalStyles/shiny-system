@@ -1830,6 +1830,11 @@
   dependencies:
     tslib "^2.1.0"
 
+"@types/aws-lambda@^8.10.114":
+  version "8.10.114"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.114.tgz#4048273ebcd517dd118ecaa34b1368d275b6c7ad"
+  integrity sha512-M8WpEGfC9iQ6V2Ccq6nGIXoQgeVc6z0Ngk8yCOL5V/TYIxshvb0MWQYLFFTZDesL0zmsoBc4OBjG9DB/4rei6w==
+
 "@types/node@*", "@types/node@^18.15.11":
   version "18.15.11"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.11.tgz#b3b790f09cb1696cffcec605de025b088fa4225f"
@@ -2135,6 +2140,22 @@ aws-sdk@^2.1211.0, aws-sdk@^2.1326.0:
   version "2.1348.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1348.0.tgz#edc5d40e59ece4c2c2b2e01629f159c2f2be5f9f"
   integrity sha512-nyqAuSsrvXdDcumC8/a3XGn7Zd7u2ucroz9ZwvNkMC+V6L7pRxnNKzSZDgKw+vCfjrpHFyCsXyribqfNUpolDA==
+  dependencies:
+    buffer "4.9.2"
+    events "1.1.1"
+    ieee754 "1.1.13"
+    jmespath "0.16.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    util "^0.12.4"
+    uuid "8.0.0"
+    xml2js "0.4.19"
+
+aws-sdk@^2.1349.0:
+  version "2.1349.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1349.0.tgz#b71bd4003f7063318bc06ae06d8a4cc0e0efc8c2"
+  integrity sha512-aCuIFkWeRZWaxcjb+q5nqN4JsxdS/Bca7hcFkHI2P0oUzGPki6yU4fwriC1QLAW3SzBVLSeJdgXlBTS9ErBUuA==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"

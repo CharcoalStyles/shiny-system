@@ -10,8 +10,6 @@ export default {
   },
   stacks(app) {
     app.stack(function Site({ stack }) {
-      const bucket = new Bucket(stack, "images", {});
-
       const table = new Table(stack, "data", {
         fields: {
           pk: "string",
@@ -20,8 +18,24 @@ export default {
         primaryIndex: { partitionKey: "pk", sortKey: "sk" },
       });
 
+      const prodBucket = new Bucket(stack, "images", {});
+      const uploadBucket = new Bucket(stack, "uploads", {
+        defaults: {
+          function: {
+            bind: [prodBucket, table],
+          },
+        },
+        notifications: {
+          myNotification1: {
+            function: "bucket.handler",
+            events: ["object_created"],
+          },
+        },
+      });
+      uploadBucket.bind([uploadBucket]);
+
       const site = new NextjsSite(stack, "site", {
-        bind: [bucket, table],
+        bind: [prodBucket, table],
       });
 
       stack.addOutputs({

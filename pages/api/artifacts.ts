@@ -10,7 +10,7 @@ export default async function getImage(
   const dynamodb = new AWS.DynamoDB.DocumentClient();
   const { limit, lastKey } = req.query;
 
-  const limitNumber = parseInt(limit as string) || 10;
+  const limitNumber = parseInt(limit as string) || 20;
   const limitedLimitNumber = limitNumber > 30 ? 30 : limitNumber;
 
   const params = {
@@ -18,9 +18,9 @@ export default async function getImage(
     KeyConditionExpression: "pk = :pk and begins_with(sk, :sk)",
     ExpressionAttributeValues: {
       ":pk": "image-ref",
-      ":sk": "sd#",
+      ":sk": "sfw#",
     },
-    Limit: parseInt(req.query.limit as string) || 10,
+    Limit: limitedLimitNumber,
     ExclusiveStartKey: lastKey
       ? JSON.parse(
           Buffer.from(req.query.lastKey as string, "base64").toString()
@@ -33,7 +33,6 @@ export default async function getImage(
 
   try {
     const data = await dynamodb.query(params).promise();
-    console.log(data);
     if (!data.Items) {
       res.status(200).json({ artifacts: [] });
       return;
@@ -41,7 +40,6 @@ export default async function getImage(
 
     const images = await Promise.all(
       data.Items.map(({ id }) => {
-        console.log("id", id);
         return s3
           .getObject({
             Bucket: Bucket.images.bucketName,
@@ -52,9 +50,16 @@ export default async function getImage(
     );
 
     const artifacts = data.Items.map(({ id }, index) => {
+      const body: AWS.S3.Body | undefined = images[index].Body;
+      if (!body) {
+        return {
+          id: id,
+          thumbnail: undefined,
+        };
+      }
       return {
         id: id,
-        thumbnail: images[index].Body.toString("base64"),
+        thumbnail: body.toString("base64"),
       };
     });
 

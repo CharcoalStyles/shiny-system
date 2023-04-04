@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Head from "next/head";
+import Link from "next/link";
 
 type Artifact = {
   id: string;
@@ -15,8 +16,7 @@ export default function Home() {
       .get<{ artifacts: Array<Artifact>; lastKey?: string }>(
         "http://localhost:3000/api/artifacts"
       )
-      .then(({data: {artifacts}}) => {
-        console.log(artifacts);
+      .then(({ data: { artifacts } }) => {
         setArtifacts(artifacts);
       });
   }, []);
@@ -34,11 +34,18 @@ export default function Home() {
             <h1 className="text-3xl font-bold">AItifacts</h1>
           </div>
         </header>
-        <section className="bg-gray-100 pt-24">
+        <section
+          className="bg-gray-100 pt-24"
+          style={{ minHeight: "100vh" }}
+        >
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap -mx-4">
               {artifacts.map((artifact) => (
-                <div className="w-full md:w-1/3 lg:w-1/4 px-4 mb-8">
+                <Link
+                  className="w-full md:w-1/3 lg:w-1/4 px-4 mb-8"
+                  href={`/${artifact.id}`}
+                  key={artifact.id}
+                >
                   <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     <img
                       src={`data:image/jpg;base64,${artifact.thumbnail}`}
@@ -47,11 +54,11 @@ export default function Home() {
                     />
                     <div className="p-4">
                       <h1 className="text-xl font-semibold text-gray-800">
-                        #{artifact.id.split("-").slice(1,3).join("-")}
+                        #{artifact.id.split("-").slice(1, 3).join("-")}
                       </h1>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
