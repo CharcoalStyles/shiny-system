@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { Heading } from "@/components/heading";
 
 type Artifact = {
   image: string;
@@ -38,11 +39,7 @@ export default function Home() {
         <title>AItifacts</title>
       </Head>
       <main>
-        <header className="bg-gray-800 text-white fixed w-full  top-0 z-10">
-          <div className="container mx-auto py-4 px-5 flex justify-center items-center">
-            <h1 className="text-3xl font-bold">AItifacts</h1>
-          </div>
-        </header>
+        <Heading />
         <section className="bg-gray-100 pt-24 pb-8 h-screen">
           <div className="container mx-auto px-4">
             {artifact ? (
@@ -53,7 +50,7 @@ export default function Home() {
                     alt={artifact.prompt}
                   />
                 </div>
-                <div className="text-black">
+                <div className="text-plum-700">
                   <h2 className="font-bold mb-4">{artifact.prompt}</h2>
                   <p className="mb-2">
                     <span className="font-bold">Negative:</span>{" "}

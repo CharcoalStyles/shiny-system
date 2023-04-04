@@ -36,6 +36,10 @@ export default {
 
       const site = new NextjsSite(stack, "site", {
         bind: [prodBucket, table],
+        // add an environment variable to the Next.js app
+        environment: {
+          KOFI_ID: process.env.KOFI_ID || "kofi",
+        },
       });
 
       stack.addOutputs({

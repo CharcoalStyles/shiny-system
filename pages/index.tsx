@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
+import { Heading } from "@/components/heading";
 
 type Artifact = {
   id: string;
@@ -29,15 +30,8 @@ export default function Home() {
         <title>AItifacts</title>
       </Head>
       <main>
-        <header className="bg-gray-800 text-white fixed w-full  top-0 z-10">
-          <div className="container mx-auto py-4 px-5 flex justify-center items-center">
-            <h1 className="text-3xl font-bold">AItifacts</h1>
-          </div>
-        </header>
-        <section
-          className="bg-gray-100 pt-24"
-          style={{ minHeight: "100vh" }}
-        >
+        <Heading />
+        <section className="bg-gray-100 pt-24" style={{ minHeight: "100vh" }}>
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap -mx-4">
               {artifacts.map((artifact) => (
@@ -53,7 +47,7 @@ export default function Home() {
                       className="w-full h-64 object-cover object-center"
                     />
                     <div className="p-4">
-                      <h1 className="text-xl font-semibold text-gray-800">
+                      <h1 className="text-xl font-semibold text-plum-700">
                         #{artifact.id.split("-").slice(1, 3).join("-")}
                       </h1>
                     </div>

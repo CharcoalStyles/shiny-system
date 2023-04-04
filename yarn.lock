@@ -3705,6 +3705,11 @@ jszip@^2.6.1:
   dependencies:
     pako "~1.0.2"
 
+kofi-button@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/kofi-button/-/kofi-button-1.1.1.tgz#79d34e65697ee8bb93467529b7d905e715c07bc1"
+  integrity sha512-6LjKH46C5L0WXgd7lcCCZ6sZyrtjv7tLA5XLBnuayyzrSDRP6yQKt00zL7IH2QxixqQtyxAqpefwUglmmtD9IA==
+
 kysely-codegen@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/kysely-codegen/-/kysely-codegen-0.9.0.tgz#aec00be807e1c799bfedcc18411cc31fe4f79bcb"
